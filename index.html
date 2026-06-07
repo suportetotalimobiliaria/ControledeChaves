@@ -6,6 +6,8 @@
     <meta name="theme-color" content="#121212">
     <title>Controle de Chaves</title>
     
+    <link rel="manifest" href="./manifest.json">
+    
     <link rel="icon" type="image/png" href="https://img.icons8.com/3d-fluency/512/key.png">
     <link rel="apple-touch-icon" href="https://img.icons8.com/3d-fluency/512/key.png">
     
@@ -22,7 +24,6 @@
             overflow: hidden;
             background-color: #121212;
         }
-        /* O iframe vai ocupar a tela toda de forma invisível */
         iframe {
             width: 100%;
             height: 100%;
@@ -38,5 +39,15 @@
 
     <iframe src="https://script.google.com/macros/s/AKfycbxdJ5o2MnT2BzdobiHwHGilEbcbCLzoEoE6If0g952uZV3f42i8ATHtc9bvA-p38oyx0Q/exec"></iframe>
 
+    <script>
+        // Registro do Service Worker obrigatório para o botão de instalação aparecer no Chrome
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('./sw.js')
+                    .then(reg => console.log('Service Worker registrado com sucesso!', reg))
+                    .catch(err => console.error('Falha ao registrar o Service Worker:', err));
+            });
+        }
+    </script>
 </body>
 </html>
